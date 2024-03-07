@@ -17,4 +17,5 @@ def home():
     Returns:
         Response: The rendered template for the home page.
     """
-    return render_template('home.html')
+    return render_template('home.html',
+                           title='Welcome to the Multi-Vendor Marketplace')
