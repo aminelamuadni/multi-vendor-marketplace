@@ -7,7 +7,7 @@ throughout the project.
 """
 
 import unittest
-import pep8
+import pycodestyle
 
 
 class TestConfigDocs(unittest.TestCase):
@@ -21,7 +21,7 @@ class TestConfigDocs(unittest.TestCase):
 
         This test will fail if any PEP 8 standards are violated in config.py.
         """
-        pep8style = pep8.StyleGuide(quiet=True)
+        pep8style = pycodestyle.StyleGuide(quiet=True)
         result = pep8style.check_files(['config.py'])
         self.assertEqual(result.total_errors, 0, result.messages)
 

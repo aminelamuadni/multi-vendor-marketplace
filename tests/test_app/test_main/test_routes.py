@@ -7,9 +7,9 @@ This module contains two test classes:
 """
 
 import unittest
-import pep8
+import pycodestyle
 
-from app import create_app, main
+from app import create_app
 from config import TestingConfig
 
 
@@ -22,7 +22,7 @@ class TestRoutesDocs(unittest.TestCase):
         """
         Test that the routes module conforms to PEP 8.
         """
-        pep8style = pep8.StyleGuide(quiet=True)
+        pep8style = pycodestyle.StyleGuide(quiet=True)
         result = pep8style.check_files(['app/main/routes.py'])
         self.assertEqual(result.total_errors, 0, result.messages)
 
