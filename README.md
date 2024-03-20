@@ -1,8 +1,11 @@
 # Multi-Vendor Marketplace
 
-## Overview
+## Introduction
 
 The Multi-Vendor Marketplace is a web application developed as a portfolio project in the 12-month ALX Software Engineering Programme. This project aims to provide a platform for multiple sellers to create and manage their own online stores, offering a diverse range of products to customers.
+
+**Useful Links:**
+- Author's LinkedIn: [Amine Lamuadni](https://www.linkedin.com/in/aminelamuadni/)
 
 ## Installation
 
@@ -12,6 +15,10 @@ The Multi-Vendor Marketplace is a web application developed as a portfolio proje
    - Windows: `python -m venv venv` and `venv\Scripts\activate`
    - Unix or MacOS: `python3 -m venv venv` and `source venv/bin/activate`
 4. Install dependencies: `pip install -r requirements.txt`.
+
+## Usage
+
+After completing the installation steps, ensure the database setup is properly configured, then run the application using `flask run`. The application can be accessed through `http://localhost:5000`.
 
 ## Database Setup
 
@@ -29,11 +36,6 @@ Run these scripts in your MySQL server to create the necessary databases and use
   - Create a migration: `flask db migrate -m "description of changes"`
   - Apply the migration: `flask db upgrade`
 - These steps are necessary for evolving the database schema alongside application development.
-
-## Running the Application
-
-- After completing the installation and database setup, run the application: `flask run`.
-- Access the application at `http://localhost:5000`.
 
 ## Authentication System
 
@@ -60,3 +62,15 @@ Features:
 - Regularly update your feature branch with changes from `dev` to minimize conflicts.
 - After thorough testing in `dev`, merge changes into `main` for release.
 - Use pull requests for merging, facilitating code reviews and discussions.
+
+## Contributing
+
+We welcome contributions from the community! If you're interested in helping improve the Multi-Vendor Marketplace, please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes with clear, concise commit messages.
+4. Push your branch and submit a pull request against the `dev` branch.
+
+## Licensing
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
