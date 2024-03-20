@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
       {% block styles %}
-        {{ bootstrap.load_css() }}
+      <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}">
       {% endblock %}
 
       <title>{{ title }}</title>
@@ -22,13 +22,16 @@
             <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
             {% if not current_user.is_authenticated %}
-              <div class="order-2 order-lg-3 ms-auto">
-                <a href="{{ url_for('auth.login') }}">Login</a> or <a href="{{ url_for('auth.register') }}">Register</a>
+              <div class="d-flex gap-2 order-2 order-lg-3 ms-auto">
+                <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Register</a>
               </div>
             {% endif %}
 
             <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
-              <ul class="navbar-nav">{{ render_nav_item('main.home', 'Home') }}</ul>
+              <ul class="navbar-nav">
+                {{ render_nav_item('main.home', 'Home', '', True) }}
+              </ul>
               {% if current_user.is_authenticated %}
                 <ul class="navbar-nav ms-auto">
                   <li class="nav-item dropdown">
@@ -48,7 +51,9 @@
           <div class="py-3">
             <div class="container">
               <div class="d-flex flex-wrap align-items-center w-100 gap-4">
-                <h1 class="navbar-brand mb-0 h1">Multi-Vendor Marketplace</h1>
+                <h1 class="navbar-brand mb-0 h1">
+                  <a href="{{ url_for('main.welcome') }}" class="text-decoration-none link-dark">Multi-Vendor Marketplace</a>
+                </h1>
               </div>
             </div>
           </div>
@@ -75,30 +80,6 @@
     {% endblock %}
 
     {% block scripts %}
-      {{ bootstrap.load_js() }}
-
-      <script>
-        ;(function () {
-          'use strict'
-        
-          var forms = document.querySelectorAll('.needs-validation')
-        
-          Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener(
-              'submit',
-              function (event) {
-                if (!form.checkValidity()) {
-                  event.preventDefault()
-                  event.stopPropagation()
-                }
-        
-                form.classList.add('was-validated')
-              },
-              false
-            )
-          })
-        })()
-      </script>
     {% endblock %}
   </body>
 </html>
