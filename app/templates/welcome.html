@@ -1,0 +1,249 @@
+{% from 'bootstrap5/nav.html' import render_nav_item %}
+{% from 'bootstrap5/utils.html' import render_messages %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+      {% block styles %}
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'font-awesome/css/fontawesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'font-awesome/css/brands.min.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'font-awesome/css/solid.min.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'css/welcome.css') }}" />
+      {% endblock %}
+
+      <title>{{ title }}</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block content %}
+      <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <button class="navbar-toggler order-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+            {% if not current_user.is_authenticated %}
+              <div class="d-flex gap-2 order-2 order-lg-3 ms-auto">
+                <a class="btn btn-outline-primary" href="{{ url_for('auth.login') }}">Login</a>
+                <a class="btn btn-primary" href="{{ url_for('auth.register') }}">Register</a>
+              </div>
+            {% endif %}
+
+            <div class="collapse navbar-collapse order-2" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                {{ render_nav_item('main.home', 'Home', '', True) }}
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#features">Features</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="#about">About</a>
+                </li>
+              </ul>
+
+              {% if current_user.is_authenticated %}
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ current_user.full_name }}</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li>
+                        <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <section id="intro">
+          <div class="background-container">
+            <!-- 
+            <video playsinline autoplay loop muted>
+              <source src="" type="video/mp4" />
+            </video>
+             -->
+            <img src="{{ url_for('static', filename = 'img/iStock-923079848.jpg') }}" alt="Welcome to the Multi-Vendor Marketplace" />
+          </div>
+
+          <div class="container">
+            <div class="d-flex vh-100">
+              <div class="d-flex flex-column align-self-center">
+                <div class="px-4 py-5 my-5 text-center">
+                  <h1 class="display-5 fw-bold">Welcome to the Multi-Vendor Marketplace</h1>
+
+                  <p class="lead mb-4">Discover a world of possibilities at our Multi-Vendor Marketplace where you can connect with passionate sellers and discerning buyers. If you are a seller looking to expand your reach or a buyer searching for unique products, our marketplace is the perfect platform for you. Join us today and be a part of shaping the future of e-commerce.</p>
+
+                  <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                    <a href="#" class="btn btn-primary btn-lg px-4">Get Started</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features">
+          <div class="bg-white">
+            <div class="container">
+              <div class="d-flex vh-100">
+                <div class="d-flex flex-column align-self-center">
+                  <div class="px-4 py-5 my-5">
+                    <h2 class="display-5 fw-bold text-center">Features</h2>
+
+                    <p class="lead mb-4 text-center">Our platform is designed with your safety and convenience in mind. We believe that buying and selling online should be easy and hassle-free. That's why we offer a range of features to ensure a seamless experience for all our users.</p>
+
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 py-5">
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-user-lock fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Authentication System</h3>
+                          <p>Our robust system enables secure user registration, login, and authentication for both buyers and sellers.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-store fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Store Management</h3>
+                          <p>Our platform provides you with powerful tools and features to set up and manage your individual stores. You can easily customize your store profile, branding, and product categories.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-tags fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Category Management</h3>
+                          <p>We give you the flexibility to create your own product categories within your store, making it easier for buyers to find what they're looking for.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-cube fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Product Management</h3>
+                          <p>You have complete control over your product listings. You can add, edit, and manage product images, descriptions, pricing, and inventory to ensure that your listings are accurate and up-to-date.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-clipboard-list fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Order Management</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>Our platform makes it easy for you to track and manage orders, including order fulfillment, shipment tracking, and communication with buyers.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-star fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Reviews and Ratings</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>Our transparent rating system allows buyers to provide feedback and rate products and sellers, fostering trust and accountability in the marketplace.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-credit-card fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Secure Payment Processing</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>We integrate with secure payment gateways to ensure smooth and secure transactions between buyers and sellers.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-magnifying-glass fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Advanced Search</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>Our advanced search feature allows buyers to find products more efficiently using multiple criteria such as keywords, filters, attributes, and sorting options.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-chart-line fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Seller Analytics</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>You can access powerful analytics and reporting tools to track the performance of your store, sales, and customer behavior.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-heart fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Wishlist and Favorites</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>Our platform allows buyers to save and track their favorite products or stores for future reference or purchase.</p>
+                        </div>
+                      </div>
+
+                      <div class="col d-flex align-items-start">
+                        <i class="fa-solid fa-check-circle fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
+                        <div>
+                          <h3 class="fw-bold h4 mb-0">Seller Verification</h3>
+                          <span class="badge bg-primary">Launching Soon</span>
+                          <p>Our verification process ensures that all sellers on our platform are legitimate and trustworthy, giving buyers peace of mind when making a purchase.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="lead mb-4 text-center">With our platform, you can buy and sell with confidence. We are committed to providing you with the best possible experience, and we are always looking for ways to improve our platform to meet your needs.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about">
+          <div class="bg-light">
+            <div class="container">
+              <div class="d-flex vh-100">
+                <div class="d-flex flex-column align-self-center">
+                  <div class="px-4 py-5 my-5 text-center">
+                    <h2 class="display-5 fw-bold">About the Multi-Vendor Marketplace</h2>
+
+                    <p class="lead">The Multi-Vendor Marketplace is a platform designed to assist small businesses and connect buyers with a variety of unique products. Our marketplace is committed to nurturing creativity and entrepreneurship, making a positive impact on the e-commerce industry.</p>
+                    <p class="lead mb-4">Created by Amine Lamuadni as a Portfolio Project for Holberton School, this platform showcases technical expertise and creativity in developing a user-friendly interface that benefits both sellers and buyers. Join us today to support small businesses and discover remarkable products.</p>
+
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                      <a href="https://ma.linkedin.com/in/aminelamuadni" class="btn btn-outline-primary btn-lg px-4"><i class="fa-brands fa-linkedin fa-fw"></i> LinkedIn</a>
+                      <a href="https://github.com/aminelamuadni" class="btn btn-outline-primary btn-lg px-4"><i class="fa-brands fa-github fa-fw"></i> GitHub</a>
+                      <a href="https://twitter.com/AmineLamuadni" class="btn btn-outline-primary btn-lg px-4"><i class="fa-brands fa-twitter fa-fw"></i> Twitter</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer></footer>
+
+      <a href="#" class="btn-scroll-top" title="Go to top">
+        <span class="fa-stack fa-2x fs-3">
+          <i class="fa-solid fa-circle fa-stack-2x"></i>
+          <i class="fa-solid fa-arrow-up fa-stack-1x fa-inverse"></i>
+        </span>
+      </a>
+    {% endblock %}
+
+    {% block scripts %}
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{{ url_for('static', filename = 'js/welcome.js') }}"></script>
+    {% endblock %}
+  </body>
+</html>
