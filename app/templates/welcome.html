@@ -20,6 +20,7 @@
   </head>
   <body>
     {% block content %}
+      <!-- Header -->
       <header class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container">
@@ -62,14 +63,15 @@
         </nav>
       </header>
 
+      <!-- Introduction -->
       <main>
         <section id="intro">
           <div class="background-container">
-            <!-- 
+            <!--  
             <video playsinline autoplay loop muted>
               <source src="" type="video/mp4" />
             </video>
-             -->
+              -->
             <img src="{{ url_for('static', filename = 'img/iStock-923079848.jpg') }}" alt="Welcome to the Multi-Vendor Marketplace" />
           </div>
 
@@ -82,8 +84,8 @@
                   <p class="lead mb-4">Discover a world of possibilities at our Multi-Vendor Marketplace where you can connect with passionate sellers and discerning buyers. If you are a seller looking to expand your reach or a buyer searching for unique products, our marketplace is the perfect platform for you. Join us today and be a part of shaping the future of e-commerce.</p>
 
                   <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a href="#" class="btn btn-outline-light btn-lg px-4">Learn More</a>
-                    <a href="#" class="btn btn-primary btn-lg px-4">Get Started</a>
+                    <a href="#features" class="btn btn-outline-light btn-lg px-4">Learn More</a>
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-4">Get Started</a>
                   </div>
                 </div>
               </div>
@@ -91,6 +93,7 @@
           </div>
         </section>
 
+        <!-- Features -->
         <section id="features">
           <div class="bg-white">
             <div class="container">
@@ -169,6 +172,8 @@
                           <p>Our advanced search feature allows buyers to find products more efficiently using multiple criteria such as keywords, filters, attributes, and sorting options.</p>
                         </div>
                       </div>
+                        </div>
+                      </div>
 
                       <div class="col d-flex align-items-start">
                         <i class="fa-solid fa-chart-line fa-fw fa-2x text-muted flex-shrink-0 me-3"></i>
@@ -205,6 +210,7 @@
           </div>
         </section>
 
+        <!-- About -->
         <section id="about">
           <div class="bg-light">
             <div class="container">
