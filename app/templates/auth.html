@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
       {% block styles %}
-        {{ bootstrap.load_css() }}
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}" />
       {% endblock %}
 
       <title>{{ title }}</title>
@@ -21,7 +21,7 @@
           <div class="py-3">
             <div class="container">
               <div class="d-flex flex-wrap align-items-center w-100 gap-4">
-                <h1 class="navbar-brand mb-0 h1">Multi-Vendor Marketplace</h1>
+                <h1 class="navbar-brand mb-0 h1"><a href="{{ url_for('main.welcome') }}" class="text-decoration-none link-dark">Multi-Vendor Marketplace</a></h1>
 
                 <div class="ms-auto">
                   {% if request.endpoint != 'auth.login' %}
@@ -57,30 +57,10 @@
     {% endblock %}
 
     {% block scripts %}
-      {{ bootstrap.load_js() }}
-
-      <script>
-        ;(function () {
-          'use strict'
-        
-          var forms = document.querySelectorAll('.needs-validation')
-        
-          Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener(
-              'submit',
-              function (event) {
-                if (!form.checkValidity()) {
-                  event.preventDefault()
-                  event.stopPropagation()
-                }
-        
-                form.classList.add('was-validated')
-              },
-              false
-            )
-          })
-        })()
-      </script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{{ url_for('static', filename = 'js/script.js') }}"></script>
     {% endblock %}
   </body>
 </html>

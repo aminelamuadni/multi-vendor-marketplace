@@ -47,6 +47,13 @@ class TestRoutes(unittest.TestCase):
         """
         self.app_context.pop()
 
+    def test_welcome_route(self):
+        """
+        Test the welcome route to ensure it returns a 200 status code.
+        """
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
     def test_home_route(self):
         """
         Test the home route to ensure it returns a 200 status code.
